@@ -50,8 +50,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  text-align: center;
 }
 
 /* ✉ Sobre */
@@ -59,11 +57,11 @@ body {
   width: 280px;
   height: 180px;
   background: linear-gradient(145deg, #334155, #1e293b);
-  border-radius: 12px;
-  position: relative;
+  border-radius: 14px;
+  position: absolute;
   cursor: pointer;
-  box-shadow: 
-    0 0 35px rgba(255,255,255,0.12),
+  box-shadow:
+    0 0 40px rgba(255,255,255,0.12),
     inset 0 0 25px rgba(255,255,255,0.05);
   transition: 0.6s;
 }
@@ -77,42 +75,59 @@ body {
   height: 50%;
   background: linear-gradient(145deg, #475569, #334155);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  border-radius: 12px 12px 0 0;
+  border-radius: 14px 14px 0 0;
 }
 
-/* 📜 Carta */
+/* 💌 Carta */
 .letter {
-  position: absolute;
-  width: 340px;
-  max-width: 92%;
+  width: 900px;
+  max-width: 95%;
+  padding: 28px;
   background: rgba(15, 23, 42, 0.97);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 0 40px rgba(255,255,255,0.08);
+  border-radius: 18px;
+  box-shadow: 0 0 45px rgba(255,255,255,0.08);
+  text-align: center;
 
-  transform: scale(0.8);
   opacity: 0;
+  transform: scale(0.85);
   pointer-events: none;
   transition: 0.6s;
 }
 
 .letter.show {
-  transform: scale(1);
   opacity: 1;
+  transform: scale(1);
   pointer-events: auto;
 }
 
 h1 {
-  font-size: 1.35rem;
-  margin-bottom: 15px;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
 }
 
-p {
+/* ❤️ Corazón */
+.heart {
+  font-size: 22px;
+  margin-bottom: 12px;
+  opacity: 0.85;
+  animation: heartbeat 2.2s infinite ease-in-out;
+  text-shadow: 0 0 12px rgba(255, 80, 80, 0.35);
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+/* ✨ Texto */
+.main-text {
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
   opacity: 0.9;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  min-height: 140px;
+  transition: 0.4s;
 }
 
 /* 💙 Botones */
@@ -120,7 +135,6 @@ p {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 10px;
 }
 
 button {
@@ -128,22 +142,15 @@ button {
   color: white;
   border: 1px solid rgba(255,255,255,0.15);
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 0.9rem;
 }
 
 button:hover {
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.03);
-}
-
-/* ✨ Mensajes */
-.message {
-  margin-top: 12px;
-  font-size: 0.9rem;
-  opacity: 0.85;
-  min-height: 40px;
+  background: rgba(255,255,255,0.18);
+  transform: scale(1.04);
 }
 
 /* 🔊 Botón mute */
@@ -169,29 +176,51 @@ button:hover {
 <div class="stars" id="stars"></div>
 
 <div class="container">
+
   <div class="envelope" id="envelope"></div>
 
   <div class="letter" id="letter">
-    <h1>Para ti 💙</h1>
-    <p>
-      Abrí esta página porque hay algo que quiero decirte…<br><br>
-      Desde que estás conmigo, incluso los días normales se sienten especiales.<br><br>
-      Dicen que un viernes 13 trae mala suerte…<br>
-      pero contigo, cualquier día es perfecto.
-    </p>
+    <div class="heart">Feliz primer mes, mi amor ❤️</div>
+<h1 style="font-size: 1.0rem;">(Selecciona los botones en orden)</h1>
+<div class="main-text" id="mainText">
+  Hace un mes no sabía todo lo que nos esperaba, y hoy puedo decirte que ha sido el mes más bonito de mi vida.
+  A pesar de la distancia, me haces sentir tan cerca…<br><br>
 
-    <div class="buttons">
-      <button onclick="showMessage('amo')">❤️ Lo que amo de ti</button>
-      <button onclick="showMessage('momentos')">🌟 Nuestros momentos</button>
-      <button onclick="showMessage('futuro')">🔮 Lo que quiero contigo</button>
-    </div>
+  Despertar y ver tu mensaje de buenos días me hace sentir especial, querido y feliz.  
+  Es uno de mis momentos favoritos del día.<br><br>
 
-    <div class="message" id="message"></div>
-  </div>
+  Gracias por incluirme en tu vida, por llamarme en tu hora de comida,  
+  por compartirme tus momentos, por mandarme fotos cuando estás con tu familia  
+  o haciendo cualquier cosa. Todo eso me hace sentir parte de ti,  
+  como si estuviera ahí contigo.<br><br>
+
+  Este mes ha sido increíble para mí.  
+  Me has hecho sonreír, ilusionarme y sentir algo muy real y muy bonito.<br><br>
+
+  Estoy profundamente feliz de estar contigo.<br><br>
+
+  Te amo muchísimo.<br>
+  Y gracias por este primer mes tan perfecto (y los que nos faltan)❤️
 </div>
 
+
+    <div class="buttons">
+      <button onclick="changeText('gusta')">1. Lo que me gusta de ti</button>
+      <button onclick="changeText('suenos')">2. Mis sueños</button>
+      <button onclick="changeText('miedo')">3. Mis miedo</button>
+      <button onclick="changeText('brillas')">4.Brillas</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- 🎵 Audios -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="Viernes 13.mp3" type="audio/mpeg">
+  <source src="Te Amo y Más.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="brillasMusic" loop preload="auto">
+  <source src="Brillas.mp3" type="audio/mpeg">
 </audio>
 
 <button id="muteBtn">🔊</button>
@@ -215,22 +244,21 @@ for (let i = 0; i < 220; i++) {
 const envelope = document.getElementById('envelope');
 const letter = document.getElementById('letter');
 
-envelope.addEventListener('click', openLetter);
-
-function openLetter() {
+envelope.addEventListener('click', () => {
   envelope.style.opacity = "0";
   envelope.style.transform = "scale(0.7)";
-  
+
   setTimeout(() => {
     envelope.style.display = "none";
     letter.classList.add('show');
   }, 500);
 
   startMusic();
-}
+});
 
 /* 🎵 Música */
 const bgMusic = document.getElementById('bgMusic');
+const brillasMusic = document.getElementById('brillasMusic');
 let musicStarted = false;
 
 function startMusic() {
@@ -254,42 +282,179 @@ function startMusic() {
 
 document.addEventListener('click', startMusic, { once: true });
 
-/* 🔊 Mute */
+/* 🔊 Mute GLOBAL */
 const muteBtn = document.getElementById('muteBtn');
 muteBtn.addEventListener('click', () => {
-  bgMusic.muted = !bgMusic.muted;
-  muteBtn.textContent = bgMusic.muted ? '🔈' : '🔊';
+  const muted = !bgMusic.muted;
+  bgMusic.muted = muted;
+  brillasMusic.muted = muted;
+  muteBtn.textContent = muted ? '🔈' : '🔊';
 });
 
-/* 💙 Mensajes */
-const messageBox = document.getElementById('message');
+/* 💙 Cambio de texto */
+const mainText = document.getElementById('mainText');
 
-function showMessage(type) {
-  if (type === 'amo') {
-    messageBox.innerHTML = `
-      Amo tu sonrisa<br>
-      Amo cómo me haces sentir<br>
-      Amo cada momento contigo 💙
-    `;
-  }
+function changeText(type) {
 
-  if (type === 'momentos') {
-    messageBox.innerHTML = `
-      Nuestro primer beso<br>
-      Nuestras risas infinitas<br>
-      Cada recuerdo contigo ✨
-    `;
-  }
+if (type === 'gusta') {
+  mainText.innerHTML = `
+    La verdad… no sé ni por dónde empezar, porque me gusta todo de ti.<br><br>
 
-  if (type === 'futuro') {
-    messageBox.innerHTML = `
-      Más viajes juntos<br>
-      Más abrazos<br>
-      Más viernes 13 contigo 😌
-    `;
-  }
+    Me gusta tu cabello, aunque suene simple.  
+    Me gusta cómo se te ve, cómo te peinas,  
+    cómo hay días en que seguro ni le haces caso  
+    y aun así te ves guapísimo.
+    Me gustan tus ojos… muchísimo.  
+    Podría quedarme viéndolos sin cansarme.<br><br>
+
+    Tu sonrisa… ay, tu sonrisa.  
+    Y más cuando te da pena.
+    Cuando te digo algo bonito por llamada  
+    y te tapas la cara como si así pudieras esconderte de mí y yo del otro lado muriéndome de ternura  
+    porque sé que te estás riendo.<br><br>
+
+    Me gusta tu barba, tu bigote,  
+    tus cachetitos hermosos…
+    me gusta tu carita.<br><br>
+
+    Y suena torpe decirlo así, pero…<br>
+    me gustas tú.<br>
+    Mucho. Demasiado.<br><br>
+
+    No es solo que seas guapo,  
+    es que eres tú,  
+    con tus gestos, tus expresiones 💙
+  `;
+}
+
+
+if (type === 'suenos') {
+  mainText.innerHTML = `
+    Mi sueño eres tú, pero en persona.<br><br>
+
+    Sueño con el día en que pueda tocar tu mano,
+    sentir tu piel y comprobar que no solo existes
+    a través de una pantalla.<br>
+
+    Me imagino pudiendo verte de cerquita,
+    sin cámara de por medio… acariciar tu carita hermosa,
+    sentir tu calor y hasta reconocer tu perfume.<br><br>
+
+    No solo imaginarte, sino tenerte realmente conmigo.
+
+    También sueño con algo que me hace muchísima ilusión:
+    tomar muchas fotos contigo.
+
+    Quiero llenar mi galería de nosotros,
+    de recuerdos bonitos, de sonrisas compartidas.
+
+    Quiero subir fotos tuyas hasta que mis amigos
+    se cansen de verme presumirte
+    y aun así seguir haciéndolo con la misma felicidad.<br><br>
+
+    Y aunque suene muy clásico,
+    muy de película romántica…<br>
+
+    También sueño (si la vida nos lo permite)
+    con vivir contigo.<br><br>
+
+    Compartir días normales,
+    rutinas simples, momentos juntos
+    sin que la distancia interrumpa nada.<br>
+
+    No sé cuándo ni cómo,
+    pero es un sueño que guardo contigo 💙
+  `;
+}
+
+
+if (type === 'miedo') {
+  mainText.innerHTML = `
+    Si soy completamente sincero contigo, mi único miedo es que algún día te canses de mí.Que lo nuestro se vuelva rutinario, que nuestras conversaciones pierdan esa chispa bonita, que me respondas solo por responder y ya no con el mismo sentimiento.<br><br>
+
+    Me da miedo que en algún momento puedas sentir que esto es una obligación, que llegues a pensar que te presiono, que te atosigo o que no te doy tu espacio. Nunca quisiera que estar conmigo se sienta pesado, porque lo que más quiero es que lo nuestro, incluso a la distancia, siempre se sienta bonito y genuino.<br><br>
+
+    También tengo ese miedo silencioso de no ser suficiente para ti, de no cumplir tus expectativas, de hacer algo que no te guste o que sin querer te lastime.<br><br>
+
+    No porque dude de ti…, sino porque te quiero tanto que a veces me asusta la idea de perder algo tan bonito.<br><br>
+
+    Pero incluso con ese miedo,
+    aquí estoy…<br><br>
+
+    Eligiéndote, queriéndote y apostando por nosotros 🌙💙
+  `;
+}
+
+
+if (type === 'brillas') {
+  mainText.innerHTML = `
+    Hay algo en ti que es imposible no notar.Tienes una forma de ser que destaca sin esfuerzo,  
+    que se siente genuino, cálido, bonito. Eres una persona increíble: agradable, divertido,  
+    simpático, empático… de esas que hacen que todo se sienta más ligero.<br><br>
+
+    De verdad, algo tan simple como tu risa o tu voz  
+    tiene un efecto enorme en mí.
+    Logras tranquilizarme, alegrarme el día,  
+    cambiar por completo mis mañanas,  
+    mis tardes y mis noches.
+    Siempre que te escucho,
+    algo en mí se acomoda,
+    se calma,
+    se siente feliz.<br><br>
+
+    Admiro lo listo que eres,
+    la claridad que tienes para ver las cosas,
+    la forma en que tus consejos
+    siempre parecen tener sentido.<br><br>
+
+    Y sí… tal vez ya te lo he dicho antes.<br><br>
+
+    Pero nunca me voy a cansar de repetirlo: Tienes una luz muy tuya,
+    algo especial que te hace destacar donde sea que estés.
+
+    Brillas,
+    y me encanta poder verlo 🤍
+  `;
+
+  switchToBrillas();
+}
+
+}
+
+/* ✨ Cambio de canción */
+function switchToBrillas() {
+
+  let vol = bgMusic.volume;
+
+  const fadeOut = setInterval(() => {
+    vol -= 0.03;
+    if (vol <= 0) {
+      vol = 0;
+      clearInterval(fadeOut);
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      startBrillas();
+    }
+    bgMusic.volume = vol;
+  }, 60);
+}
+
+function startBrillas() {
+  brillasMusic.volume = 0;
+  brillasMusic.play();
+
+  let vol = 0;
+  const fadeIn = setInterval(() => {
+    vol += 0.03;
+    if (vol >= 1) {
+      vol = 1;
+      clearInterval(fadeIn);
+    }
+    brillasMusic.volume = vol;
+  }, 60);
 }
 </script>
 
 </body>
 </html>
+
